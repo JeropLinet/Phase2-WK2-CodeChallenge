@@ -9,7 +9,7 @@ function BotDetails() {
   const [bots, setBots] = useState([]) // initializes state as empty array
   const { id } = useParams() //allows access of parameters from URL
   const navigate = useNavigate() //for navigation
-
+  const[myArmy,setMyArmy]=useState([]) 
 
   useEffect(() => {
     fetch(`http://localhost:5000/bots/${id}`) //uses id to change urls
@@ -24,11 +24,25 @@ function BotDetails() {
     navigate('/')
   }
 
+  const handleEnlistChange=()=>{
+    if (bots && bots.length > 0) {
+      const newBot = bots[0];
+      const isAlreadyEnlisted = myArmy.some(bot => bot.bot_class === newBot.bot_class);
+      if (!isAlreadyEnlisted) {
+        setBots([])
+        setMyArmy(prevArmy => [...prevArmy, newBot]);
+      } else {
+        alert('You can only add one bot per class to your army.');
+      }
+    }
+  }
+
+
 return (
     <div className="army-container">
         {bots.map(bot => (
              <div className="card-army" key={bot.id}>
-             <img src={bot.avatar_url} alt="Avatar" />
+             <img src={bot.avatar_url} alt="Avatar"/>
              <div className="army_details">
                <p>Name: {bot.name}</p>
                <p>Catchphrase: {bot.catchphrase}</p>
@@ -40,7 +54,7 @@ return (
                </div>
              </div>
              <button onClick={handleBack}>Back</button>
-             <button>Enlist</button>
+             <button onClick={handleEnlistChange}>Enlist</button>
            </div>
         ))}
     </div>

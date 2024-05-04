@@ -79,3 +79,8 @@
     flex: 1; 
     padding: 10px;
 }
+.bot_army{
+    border: 2px solid brown;
+    height:400px;
+    width: auto;
+}
