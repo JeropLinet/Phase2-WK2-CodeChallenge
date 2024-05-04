@@ -41,9 +41,9 @@ function BotDetails() {
 return (
     <div className="army-container">
         {bots.map(bot => (
-             <div className="card-army" key={bot.id}>
+             <div className="bot-card" key={bot.id}>
              <img src={bot.avatar_url} alt="Avatar"/>
-             <div className="army_details">
+             <div className="bot_details">
                <p>Name: {bot.name}</p>
                <p>Catchphrase: {bot.catchphrase}</p>
    

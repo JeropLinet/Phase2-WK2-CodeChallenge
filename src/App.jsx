@@ -8,14 +8,14 @@ function App() {
   
 
   return (
-    <>
+    <div className='page-content'>
      <YourBotArmy/>
     <Routes>
       <Route path='/' element={<BotCollection/>}/>
       <Route path='/yourbotarmy' element={<YourBotArmy />} />
       <Route path='/bot/:id' element={<BotDetails />} />
     </Routes>
-    </>
+    </div>
   )
 }
 
