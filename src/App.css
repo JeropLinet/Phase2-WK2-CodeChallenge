@@ -33,14 +33,19 @@
   .card-details {
     margin-top: 10px;
   }
-  
+  .select{
+    height: 35px;
+    border-radius: 1000px;
+    text-align: center;
+    
+  }
   .status img {
     width: 20px;
     height: 20px;
     margin-right: 5px;
   }
   
-  /* BotCollection Component Styling */
+  /* BotCollection Styling */
   .filter-container {
     margin-bottom: 20px;
   }
@@ -50,9 +55,10 @@
     font-size: 16px;
   }
   
-  /* YourBotArmy Component Styling */
+  /* YourBotArmy Styling */
   .bot-army {
-    margin-top: 20px;
+    border: 2px solid black;
+   
   }
   
   .bot-army h1 {
@@ -71,6 +77,7 @@
     max-width: 100%;
     height: auto;
     border-radius: 5px;
+    border-bottom: 2px solid blue;
   }
   
   .bot-details {
@@ -78,6 +85,7 @@
   }
   
   .bot-card button {
+   
     margin-top: 10px;
     background-color: red;
     color: white;

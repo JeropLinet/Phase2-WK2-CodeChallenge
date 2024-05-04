@@ -46,7 +46,7 @@ return (
              <div className="bot_details">
                <p>Name: {bot.name}</p>
                <p>Catchphrase: {bot.catchphrase}</p>
-   
+               
                <div className="status">
                  <img src={bolt} alt="Bolt" />: {bot.health}
                  <img src={heartBreak} alt="Heart Break" />: {bot.damage}

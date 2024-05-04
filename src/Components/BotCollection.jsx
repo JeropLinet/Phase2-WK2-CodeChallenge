@@ -7,7 +7,7 @@ import heartBreak from "../../icons/heartBreak.svg";
 function BotCollection() {
   const [bots, setBots] = useState([]);
   const [filterClass, setFilterClass] = useState('');
-
+  const [sortOption, setSortOption] = useState('health')
   // Fetching bot data from the db.json
   useEffect(() => {
     fetch("http://localhost:5000/bots")
@@ -19,19 +19,33 @@ function BotCollection() {
   // Function that handles filter change
   const handleFilterChange = e => {
     setFilterClass(e.target.value);
+  }
+   // Function that handles sort change
+   const handleSortChange = (option) => {
+    setSortOption(option);
   };
 
   // Get unique bot classes that helps you to filter
   const presentClasses = [...new Set(bots.map(bot => bot.bot_class))];
 
   // Filter bots based on the selected class
-  const filteredBots = bots.filter(bot =>
-    filterClass === "" || bot.bot_class === filterClass
-  );
+  const filteredBots = bots
+    .filter((bot) => filterClass === '' || bot.bot_class === filterClass)
+    .sort((a, b) => {
+      if (sortOption === 'health') {
+        return b.health - a.health;
+      } else if (sortOption === 'damage') {
+        return b.damage - a.damage;
+      } else if (sortOption === 'armor') {
+        return b.armor - a.armor;
+      }
+      return 0;
+    });
 
   return (
     <>
-      <select value={filterClass} onChange={handleFilterChange}>
+      <SortBar handleSortChange={handleSortChange} />
+      <select className="select" value={filterClass} onChange={handleFilterChange}>
         <option value="">All Classes</option>
         {presentClasses.map((classValue, index) => (
           <option key={index} value={classValue}>
