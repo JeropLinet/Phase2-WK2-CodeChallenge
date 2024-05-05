@@ -3,13 +3,14 @@ import { useParams, useNavigate } from "react-router-dom";
 import shield from "../../icons/shield.svg";
 import bolt from "../../icons/bolt.svg";
 import heartBreak from "../../icons/heartBreak.svg";
+import { Link } from "react-router-dom";
 
 
-function BotDetails({onDelete}) {
+function BotSpecs({onDelete,onEnlist}) {
   const [bots, setBots] = useState([]) // initializes state as empty array
   const { id } = useParams() //allows access of parameters from URL
   const navigate = useNavigate() //for navigation
-  const[myArmy,setMyArmy]=useState([])
+  
   
 
   useEffect(() => {
@@ -26,18 +27,10 @@ function BotDetails({onDelete}) {
   }
 
   const handleEnlistChange=()=>{
-    if (bots && bots.length > 0) {
-      const newBot = bots[0];
-      const isAlreadyEnlisted = myArmy.some(bot => bot.bot_class === newBot.bot_class);
-      if (!isAlreadyEnlisted) {
-        setBots([])
-        setMyArmy(prevArmy => [...prevArmy, newBot]);
-      } else {
-        alert('You can only add one bot per class to your army.');
-      }
-    }
+    onEnlist(bots.id)
+    navigate('/myarmy')
   }
-  
+ 
   const handleDelete=(botID)=>{
     const updateCollection = bots.filter((bot) => bot.id !== botID)
     setBots(updateCollection)
@@ -64,7 +57,7 @@ return (
                </div>
              </div>
              <button onClick={handleBack}>Back</button>
-             <button onClick={handleEnlistChange}>Enlist</button>
+             <button onClick={handleEnlistChange}> Enlist</button>
              <button onClick={()=> {handleDelete(bot.id)}}>Delete</button>
            </div>
         ))}
@@ -72,4 +65,4 @@ return (
   );
 }
 
-export default BotDetails;
+export default BotSpecs;

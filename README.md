@@ -23,11 +23,7 @@ git clone git@github.com:JeropLinet/Phase2-WK2-CodeChallenge.git
 ```
 
 
-## Live link
-
-
 ## Technologies used
-HTML
 CSS
 React
 GitHub
