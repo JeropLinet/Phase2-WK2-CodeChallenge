@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import shield from "../../icons/shield.svg";
 import bolt from "../../icons/bolt.svg";
 import heartBreak from "../../icons/heartBreak.svg";
+import SortBar from "./SortBar";
 
 function BotCollection() {
   const [bots, setBots] = useState([]);
@@ -28,7 +29,8 @@ function BotCollection() {
   // Get unique bot classes that helps you to filter
   const presentClasses = [...new Set(bots.map(bot => bot.bot_class))];
 
-  // Filter bots based on the selected class
+  // Filter a bots based on the selected class
+  // sort bots according to their state
   const filteredBots = bots
     .filter((bot) => filterClass === '' || bot.bot_class === filterClass)
     .sort((a, b) => {

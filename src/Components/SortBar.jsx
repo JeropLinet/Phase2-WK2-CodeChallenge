@@ -1,4 +1,5 @@
 function SortBar({handleSortChange}){
+
     const handleSort = (e) => {
         handleSortChange(e.target.value)
     }
