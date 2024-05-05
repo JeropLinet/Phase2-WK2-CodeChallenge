@@ -11,8 +11,6 @@ function BotSpecs({onDelete,onEnlist}) {
   const { id } = useParams() //allows access of parameters from URL
   const navigate = useNavigate() //for navigation
   
-  
-
   useEffect(() => {
     fetch(`http://localhost:5000/bots/${id}`) //uses id to change urls
       .then(res => res.json())
@@ -26,16 +24,12 @@ function BotSpecs({onDelete,onEnlist}) {
     navigate('/')
   }
 
-  const handleEnlistChange=()=>{
-    onEnlist(bots.id)
-    navigate('/myarmy')
-  }
- 
-  const handleDelete=(botID)=>{
+//deletes the bot from the bot specs
+ const handleDelete=(botID)=>{
     const updateCollection = bots.filter((bot) => bot.id !== botID)
     setBots(updateCollection)
     onDelete(bolt)
-    navigate('/')
+    navigate('/') //ensures the page automatically redirects to the botcollection after deleting is executed
     }
  
  
@@ -43,7 +37,7 @@ function BotSpecs({onDelete,onEnlist}) {
 return (
     <div className="army-container">
         {bots.map(bot => (
-             <div className="bot-card" key={bot.id}>
+          <div className="bot-card" key={bot.id}>
              <img src={bot.avatar_url} alt="Avatar"/>
              <div className="bot_details">
                <p>Name: {bot.name}</p>
@@ -57,9 +51,11 @@ return (
                </div>
              </div>
              <button onClick={handleBack}>Back</button>
-             <button onClick={handleEnlistChange}> Enlist</button>
+             <button onClick={() => onEnlist(bot.id)}>
+              <Link to="/myarmy">Enlist</Link>
+             </button>
              <button onClick={()=> {handleDelete(bot.id)}}>Delete</button>
-           </div>
+          </div>
         ))}
     </div>
   );

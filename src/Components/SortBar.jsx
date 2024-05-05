@@ -1,5 +1,5 @@
 function SortBar({handleSortChange}){
-
+//function that helps us read the value that the user has selected
     const handleSort = (e) => {
         handleSortChange(e.target.value)
     }

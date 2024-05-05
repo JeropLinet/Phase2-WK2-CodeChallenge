@@ -32,16 +32,16 @@ function BotCollection({onDelete}) {
   // Filter bots based on the selected class
   // sort bots according to their state
   const filteredBots = bots
-    .filter((bot) => filterClass === '' || bot.bot_class === filterClass)
+    .filter((bot) => filterClass === ''  || bot.bot_class === filterClass) //if class is not defined then no filtering is applied
     .sort((a, b) => {
-      if (sortOption === 'health') {
-        return b.health - a.health;
+      if (sortOption === 'health') { 
+        return b.health - a.health; //arranges in descending order
       } else if (sortOption === 'damage') {
         return b.damage - a.damage;
       } else if (sortOption === 'armor') {
         return b.armor - a.armor;
       }
-      return 0;
+      return 0 //if its not one of the options that get sorted..no sorting is applied
     })
     //function to handle delete from the DOM 
     const handleDelete=(botID)=>{
@@ -54,11 +54,11 @@ function BotCollection({onDelete}) {
    <>
     <div className="page-content">
        
-       <div className="select">
+      <div className="select">
         <button><Link to='/myarmy'>My Army</Link></button>
-        <div className="sort-select">
-         <SortBar  handleSortChange={handleSortChange} />
-        </div>
+         <div className="sort-select">
+          <SortBar  handleSortChange={handleSortChange} />
+         </div>
         <div className="filter-select">
          <select value={filterClass} onChange={handleFilterChange}>
           <option value="">All Classes</option>

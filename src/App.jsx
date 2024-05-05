@@ -6,14 +6,14 @@ import { useEffect, useState } from 'react'
 import YourBotArmy from './Components/YourBotArmy'
 function App() {
   const [bot,setBot] = useState([])
-  const [enlisting,setEnlisting] = useState([])
+  const [selectedId, setSelectedId] = useState(null);
   useEffect(() => {
     fetch("http://localhost:5000/bots")
       .then(res => res.json())
       .then(data => setBot(data))
       .catch(error => console.error('Error fetching data:', error));
   }, []);
-//handles delete in th
+
   const handleDelete = (botId) => {
     fetch(`http://localhost:5000/bots/${botId}`, {
       method:'DELETE',
@@ -21,18 +21,14 @@ function App() {
         'Content-Type':'application/json'
       },
       body:JSON.stringify({}),
-    })
+       })
    .then(()=>{
     setBot(bot.filter(bot => bot.id !== botId))
-   })
+       })
    .catch(error => console.error('Error in deleting bot', error))
-  };
-  const handleEnlist = (botId) => {
-    const findBot = bot.find((b) => b.id === botId);
-    if (findBot) {
-      setEnlisting((prevEnlisting) => [...prevEnlisting,findBot]);
-      setBot((prevBots) => prevBots.filter((b) => b.id !== botId));
-    }
+      };
+   const handleEnlist = (botId) => {
+   selectedId(botId)
   };
   
   return (
@@ -40,7 +36,7 @@ function App() {
     <Routes>
       <Route path='/' element={<BotCollection />} />
       <Route path='/bot/:id' element={<BotSpecs bots={bot} onDelete={handleDelete} onEnlist={handleEnlist}/>} />
-      <Route path='/myarmy' element={<YourBotArmy/>}></Route>
+      <Route path='/myarmy' element={<YourBotArmy selectedId={selectedId}/>}></Route>
     </Routes>
     </div>
   )
