@@ -5,12 +5,12 @@ import bolt from "../../icons/bolt.svg";
 import heartBreak from "../../icons/heartBreak.svg";
 
 
-function BotDetails() {
+function BotDetails({onDelete}) {
   const [bots, setBots] = useState([]) // initializes state as empty array
   const { id } = useParams() //allows access of parameters from URL
   const navigate = useNavigate() //for navigation
   const[myArmy,setMyArmy]=useState([])
-  const [bot,setBot] = useState(null)
+  
 
   useEffect(() => {
     fetch(`http://localhost:5000/bots/${id}`) //uses id to change urls
@@ -38,29 +38,14 @@ function BotDetails() {
     }
   }
   
-  const handleDelete = (botId) => {
-    fetch(`http://localhost:5000/bots ${botId}`, {
-      method:'DELETE',
-      headers:{
-        'Content-Type':'application/json'
-      },
-      body:JSON.stringify({}),
-    })
-    .then((response) => {
-      if (!response.ok) {
-        throw new Error(`Failed to delete bot: ${response.status} - ${response.statusText}`);
-      }
-      return response.json(); // Assuming your API returns JSON data
-    })
-    .then(() => {
-      setBots((prevBots) => prevBots.filter((bot) => bot.id !== botId));
-    })
-    .catch((error) => {
-      console.error('Error deleting bot:', error.message);
-      // Display a user-friendly error message or handle the error appropriately
-    });
-  };
-
+  const handleDelete=(botID)=>{
+    const updateCollection = bots.filter((bot) => bot.id !== botID)
+    setBots(updateCollection)
+    onDelete(bolt)
+    navigate('/')
+    }
+ 
+ 
 
 return (
     <div className="army-container">
@@ -72,14 +57,14 @@ return (
                <p>Catchphrase: {bot.catchphrase}</p>
                <p>Occupation: {bot.bot_class}</p>
                <div className="status">
-                 <img src={bolt} alt="Bolt" />: {bot.health}
-                 <img src={heartBreak} alt="Heart Break" />: {bot.damage}
+                 <img src={bolt} alt="Bolt" />: {bot.health} <br/>
+                 <img src={heartBreak} alt="Heart Break" />: {bot.damage} <br/>
                  <img src={shield} alt="Shield" />: {bot.armor}
                </div>
              </div>
              <button onClick={handleBack}>Back</button>
              <button onClick={handleEnlistChange}>Enlist</button>
-             <button onClick={handleDelete}>X</button>
+             <button onClick={()=> {handleDelete(bot.id)}}>X</button>
            </div>
         ))}
     </div>

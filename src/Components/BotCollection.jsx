@@ -5,7 +5,7 @@ import bolt from "../../icons/bolt.svg";
 import heartBreak from "../../icons/heartBreak.svg";
 import SortBar from "./SortBar";
 
-function BotCollection() {
+function BotCollection({onDelete}) {
   const [bots, setBots] = useState([]);
   const [filterClass, setFilterClass] = useState('');
   const [sortOption, setSortOption] = useState('health')
@@ -29,7 +29,7 @@ function BotCollection() {
   // Get unique bot classes that helps you to filter
   const presentClasses = [...new Set(bots.map(bot => bot.bot_class))];
 
-  // Filter a bots based on the selected class
+  // Filter bots based on the selected class
   // sort bots according to their state
   const filteredBots = bots
     .filter((bot) => filterClass === '' || bot.bot_class === filterClass)
@@ -44,6 +44,11 @@ function BotCollection() {
       return 0;
     })
     //function to handle delete from the DOM 
+    const handleDelete=(botID)=>{
+     const updateCollection = bots.filter((bot) => bot.id !== botID)
+     setBots(updateCollection)
+     onDelete(bolt)
+     }
    
   return (
     <>
@@ -61,23 +66,24 @@ function BotCollection() {
     </div>
       <div className="cards-container">
         {filteredBots.map(bot => (
-          <Link to={`/bot/${bot.id}`} key={bot.id}>
-            <div className="card">
-           
-              <img src={bot.avatar_url} alt="Avatar" />
+          <div className="card">
+             <Link to={`/bot/${bot.id}`} key={bot.id}>
+                <img src={bot.avatar_url} alt="Avatar" />
+             </Link>
               <div className="card-details">
                 <p>Name: {bot.name}</p>
                 <p>Catchphrase: {bot.catchphrase}</p>
                 <p>Occupation: {bot.bot_class}</p>
                 <div className="status">
-                  <img src={bolt} alt="Bolt" /> Health: {bot.health}
-                  <img src={heartBreak} alt="Heart Break" />:Damage {bot.damage}
-                  <img src={shield} alt="Shield" />:Armor{bot.armor}
+                  <img src={bolt} alt="Bolt" /> Health: {bot.health} <br/>
+                  <img src={heartBreak} alt="Heart Break" />Damage:{bot.damage} <br/>
+                  <img src={shield} alt="Shield" />Armor:{bot.armor} <br/>
                   
+                  <button onClick={()=> {handleDelete(bot.id)}}>Delete</button>
                 </div>
               </div>
             </div>
-          </Link>
+          
         ))}
       </div>
     </>
