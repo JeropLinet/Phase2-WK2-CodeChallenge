@@ -10,7 +10,7 @@ function YourBotArmy(){
  
     return(
        <>
-       <div className="bot_army">
+       <div className="bot-army">
         <h1>My Bot Army</h1>
         <button onClick={handleBack}>Back</button>
        </div>
