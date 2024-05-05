@@ -9,7 +9,8 @@ function BotDetails() {
   const [bots, setBots] = useState([]) // initializes state as empty array
   const { id } = useParams() //allows access of parameters from URL
   const navigate = useNavigate() //for navigation
-  const[myArmy,setMyArmy]=useState([]) 
+  const[myArmy,setMyArmy]=useState([])
+  const [bot,setBot] = useState(null)
 
   useEffect(() => {
     fetch(`http://localhost:5000/bots/${id}`) //uses id to change urls
