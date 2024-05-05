@@ -51,19 +51,27 @@ function BotCollection({onDelete}) {
      }
    
   return (
-    <>
-    <div className="select">
-
-      <SortBar  handleSortChange={handleSortChange} />
-      <select value={filterClass} onChange={handleFilterChange}>
-        <option value="">All Classes</option>
-        {presentClasses.map((classValue, index) => (
-        <option key={index} value={classValue}>
+   <>
+    <div className="page-content">
+       
+       <div className="select">
+        <button><Link to='/myarmy'>My Army</Link></button>
+        <div className="sort-select">
+         <SortBar  handleSortChange={handleSortChange} />
+        </div>
+        <div className="filter-select">
+         <select value={filterClass} onChange={handleFilterChange}>
+          <option value="">All Classes</option>
+         {presentClasses.map((classValue, index) => (
+          <option key={index} value={classValue}>
             {classValue}
-        </option>
-        ))}
-      </select>
-    </div>
+          </option>
+        
+          ))}
+         </select>
+        </div>
+      </div>
+   
       <div className="cards-container">
         {filteredBots.map(bot => (
           <div className="card">
@@ -75,18 +83,21 @@ function BotCollection({onDelete}) {
                 <p>Catchphrase: {bot.catchphrase}</p>
                 <p>Occupation: {bot.bot_class}</p>
                 <div className="status">
-                  <img src={bolt} alt="Bolt" /> Health: {bot.health} <br/>
-                  <img src={heartBreak} alt="Heart Break" />Damage:{bot.damage} <br/>
-                  <img src={shield} alt="Shield" />Armor:{bot.armor} <br/>
+                <span className="icon" role="img" aria-label="Bolt">⚡️</span> : {bot.health} <br/>
+                <span className="icon" role="img" aria-label="Heart Break">💔</span> : {bot.damage} <br/>
+                <span className="icon" role="img" aria-label="Shield">🛡️</span> : {bot.armor} <br/>
+
                   
                   <button onClick={()=> {handleDelete(bot.id)}}>Delete</button>
                 </div>
               </div>
-            </div>
+           </div>
           
         ))}
       </div>
-    </>
+
+    </div>
+   </>
   );
 }
 

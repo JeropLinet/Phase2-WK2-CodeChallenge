@@ -57,14 +57,15 @@ return (
                <p>Catchphrase: {bot.catchphrase}</p>
                <p>Occupation: {bot.bot_class}</p>
                <div className="status">
-                 <img src={bolt} alt="Bolt" />: {bot.health} <br/>
-                 <img src={heartBreak} alt="Heart Break" />: {bot.damage} <br/>
-                 <img src={shield} alt="Shield" />: {bot.armor}
+               <span className="icon" role="img" aria-label="Bolt">⚡️</span> : {bot.health} <br/>
+               <span className="icon" role="img" aria-label="Heart Break">💔</span> : {bot.damage} <br/>
+               <span className="icon" role="img" aria-label="Shield">🛡️</span> : {bot.armor} <br/>
+
                </div>
              </div>
              <button onClick={handleBack}>Back</button>
              <button onClick={handleEnlistChange}>Enlist</button>
-             <button onClick={()=> {handleDelete(bot.id)}}>X</button>
+             <button onClick={()=> {handleDelete(bot.id)}}>Delete</button>
            </div>
         ))}
     </div>

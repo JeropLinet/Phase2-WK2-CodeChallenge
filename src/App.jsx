@@ -3,7 +3,7 @@ import './App.css'
 import BotCollection from './Components/BotCollection'
 import BotDetails from './Components/BotDetails'
 import { useEffect, useState } from 'react'
-
+import YourBotArmy from './Components/BotCollection'
 function App() {
   const [bot,setBot] = useState([])
 
@@ -30,10 +30,10 @@ function App() {
 
   return (
     <div className='page-content'>
-    
     <Routes>
       <Route path='/' element={<BotCollection />} />
       <Route path='/bot/:id' element={<BotDetails bots={bot} onDelete={handleDelete} />} />
+      <Route path='/myarmy' element={<YourBotArmy/>}></Route>
     </Routes>
     </div>
   )
