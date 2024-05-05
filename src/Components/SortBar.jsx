@@ -10,7 +10,7 @@ function SortBar({handleSortChange}){
         <select id="sort" onChange={handleSort}>
             <option value="health">Health</option>
             <option value="damage">Damage</option>
-            <option value="armor">Health</option>
+            <option value="armor">Armour</option>
         </select>
       </div>
     )

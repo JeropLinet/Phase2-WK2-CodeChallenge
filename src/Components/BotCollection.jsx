@@ -42,32 +42,38 @@ function BotCollection() {
         return b.armor - a.armor;
       }
       return 0;
-    });
-
+    })
+    //function to handle delete from the DOM 
+   
   return (
     <>
-      <SortBar handleSortChange={handleSortChange} />
-      <select className="select" value={filterClass} onChange={handleFilterChange}>
+    <div className="select">
+
+      <SortBar  handleSortChange={handleSortChange} />
+      <select value={filterClass} onChange={handleFilterChange}>
         <option value="">All Classes</option>
         {presentClasses.map((classValue, index) => (
-          <option key={index} value={classValue}>
+        <option key={index} value={classValue}>
             {classValue}
-          </option>
+        </option>
         ))}
       </select>
+    </div>
       <div className="cards-container">
         {filteredBots.map(bot => (
           <Link to={`/bot/${bot.id}`} key={bot.id}>
             <div className="card">
+           
               <img src={bot.avatar_url} alt="Avatar" />
               <div className="card-details">
                 <p>Name: {bot.name}</p>
                 <p>Catchphrase: {bot.catchphrase}</p>
-
+                <p>Occupation: {bot.bot_class}</p>
                 <div className="status">
-                  <img src={bolt} alt="Bolt" />: {bot.health}
-                  <img src={heartBreak} alt="Heart Break" />: {bot.damage}
-                  <img src={shield} alt="Shield" />: {bot.armor}
+                  <img src={bolt} alt="Bolt" /> Health: {bot.health}
+                  <img src={heartBreak} alt="Heart Break" />:Damage {bot.damage}
+                  <img src={shield} alt="Shield" />:Armor{bot.armor}
+                  
                 </div>
               </div>
             </div>

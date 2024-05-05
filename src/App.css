@@ -13,19 +13,15 @@
     padding: 10px;
     border-radius: 5px;
     height: 450px;
-    width: 250px;
+    width: 300px;
     overflow: hidden;
     word-break: break-all;
-    
-  }
-  
-  .card:hover {
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    margin: 20px;
   }
   
   .card img {
-    max-width: 100%;
-    height: auto;
+    width: 200px;
+    height: 200px;
     border-radius: 5px;
     border-bottom: 2px solid ;
   }
@@ -39,10 +35,11 @@
     text-align: center;
     
   }
+  
   .status img {
     width: 20px;
     height: 20px;
-    margin-right: 5px;
+   
   }
   
   /* BotCollection Styling */
@@ -56,14 +53,7 @@
   }
   
   /* YourBotArmy Styling */
-  .bot-army {
-    border: 2px solid black;
-   
-  }
-  
-  .bot-army h1 {
-    margin-bottom: 10px;
-  }
+
   
   .bot-card {
     border: 1px solid #ccc;
@@ -71,15 +61,21 @@
     border-radius: 5px;
     margin-bottom: 10px;
     margin-left: 200px;
+    overflow: hidden;
+    word-break: break-all;
   }
   
   .bot-card img {
-    max-width: 100%;
-    height: auto;
+    width: 200px;
+    height: 200px;
     border-radius: 5px;
-    border-bottom: 2px solid blue;
+    border-bottom: 2px solid ;
   }
-  
+  .status img {
+    width: 20px;
+    height: 20px;
+   
+  }
   .bot-details {
     margin-top: 10px;
   }

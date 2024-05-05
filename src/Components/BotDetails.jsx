@@ -19,7 +19,7 @@ function BotDetails() {
         setBots ([data])})
       .catch(error => console.error('Error fetching bot details:', error));
   }) 
-//this function hepls th back button to return to the blog collections page
+//this function helps the back button to return to the blog collections page
   const handleBack = () => {
     navigate('/')
   }
@@ -36,6 +36,29 @@ function BotDetails() {
       }
     }
   }
+  
+  const handleDelete = (botId) => {
+    fetch(`http://localhost:5000/bots ${botId}`, {
+      method:'DELETE',
+      headers:{
+        'Content-Type':'application/json'
+      },
+      body:JSON.stringify({}),
+    })
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error(`Failed to delete bot: ${response.status} - ${response.statusText}`);
+      }
+      return response.json(); // Assuming your API returns JSON data
+    })
+    .then(() => {
+      setBots((prevBots) => prevBots.filter((bot) => bot.id !== botId));
+    })
+    .catch((error) => {
+      console.error('Error deleting bot:', error.message);
+      // Display a user-friendly error message or handle the error appropriately
+    });
+  };
 
 
 return (
@@ -46,7 +69,7 @@ return (
              <div className="bot_details">
                <p>Name: {bot.name}</p>
                <p>Catchphrase: {bot.catchphrase}</p>
-               
+               <p>Occupation: {bot.bot_class}</p>
                <div className="status">
                  <img src={bolt} alt="Bolt" />: {bot.health}
                  <img src={heartBreak} alt="Heart Break" />: {bot.damage}
@@ -55,6 +78,7 @@ return (
              </div>
              <button onClick={handleBack}>Back</button>
              <button onClick={handleEnlistChange}>Enlist</button>
+             <button onClick={handleDelete}>X</button>
            </div>
         ))}
     </div>
