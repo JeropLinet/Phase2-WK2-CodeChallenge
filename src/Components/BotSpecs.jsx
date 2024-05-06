@@ -25,7 +25,7 @@ function BotSpecs({onDelete}) {
  const handleDelete=(botID)=>{
     const updateCollection = bots.filter((bot) => bot.id !== botID)
     setBots(updateCollection)
-    onDelete(bolt)
+    onDelete(bots)
     navigate('/') //ensures the page automatically redirects to the botcollection after deleting is executed
     }
  
