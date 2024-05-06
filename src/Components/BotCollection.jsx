@@ -1,8 +1,5 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import shield from "../../icons/shield.svg";
-import bolt from "../../icons/bolt.svg";
-import heartBreak from "../../icons/heartBreak.svg";
 import SortBar from "./SortBar";
 
 function BotCollection({onDelete}) {
@@ -55,7 +52,7 @@ function BotCollection({onDelete}) {
     <div className="page-content">
        
       <div className="select">
-        <button><Link to='/myarmy'>My Army</Link></button>
+         <button><Link to='/myarmy'>My Army</Link></button>
          <div className="sort-select">
           <SortBar  handleSortChange={handleSortChange} />
          </div>

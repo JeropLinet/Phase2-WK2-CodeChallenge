@@ -4,9 +4,10 @@ import BotCollection from './Components/BotCollection'
 import BotSpecs from './Components/BotSpecs'
 import { useEffect, useState } from 'react'
 import YourBotArmy from './Components/YourBotArmy'
+
 function App() {
   const [bot,setBot] = useState([])
-  
+
    useEffect(() => {
     fetch("http://localhost:5000/bots")
       .then(res => res.json())

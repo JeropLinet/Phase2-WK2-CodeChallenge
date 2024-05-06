@@ -1,8 +1,5 @@
 import React, { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import shield from "../../icons/shield.svg";
-import bolt from "../../icons/bolt.svg";
-import heartBreak from "../../icons/heartBreak.svg";
 import { Link } from "react-router-dom";
 
 

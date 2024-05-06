@@ -22,7 +22,6 @@ git clone git@github.com:JeropLinet/Phase2-WK2-CodeChallenge.git
 
 ```
 
-
 ## Technologies used
 CSS
 React
