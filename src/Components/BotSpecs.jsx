@@ -6,7 +6,7 @@ import heartBreak from "../../icons/heartBreak.svg";
 import { Link } from "react-router-dom";
 
 
-function BotSpecs({onDelete,onEnlist}) {
+function BotSpecs({onDelete}) {
   const [bots, setBots] = useState([]) // initializes state as empty array
   const { id } = useParams() //allows access of parameters from URL
   const navigate = useNavigate() //for navigation
@@ -51,7 +51,7 @@ return (
                </div>
              </div>
              <button onClick={handleBack}>Back</button>
-             <button onClick={() => onEnlist(bot.id)}>
+             <button>
               <Link to="/myarmy">Enlist</Link>
              </button>
              <button onClick={()=> {handleDelete(bot.id)}}>Delete</button>
